@@ -1,0 +1,33 @@
+x = [0 0 1 1; 0 1 0 1];
+m = 4;
+y = [0 1 1 0];
+
+lambda = 1;
+
+theta1 = randn(2, 3);
+theta2 = randn(1, 3);
+D1 = Delta1 = zeros(2, 3);
+D2 = Delta2 = zeros(1,3);
+
+J = []
+for i = 1:10 
+	[h, a1, a2, a3, z2, z3]  = fire(theta1, theta2, x);
+
+	ldelta3 = a3 - y;
+	ldelta2 = theta2'*ldelta3.*a2.*(1-a2);
+
+	Delta2 = Delta2 + ldelta3 * a2';
+	Delta1 = Delta1 + ldelta2(2:end, :) * a1';
+
+	theta1 = (1/4) .* Delta1 + lambda * theta1;
+	theta2 = (1/4) .* Delta2 + lambda * theta2;
+	
+	theta1(:,1) = (1/4) .* Delta1 (:, 1);
+	theta2(:,1) = (1/4) .* Delta2 (:, 1);
+
+	j = (-1/m) * sum( y * log(a3')  + (1-y) * log(1 - a3')) +(lambda/(2*m))* (sum(sum(theta1.^2)) + sum(sum(theta2.^2))) 
+	J = [J, j];
+end
+
+h = fire(theta1, theta2, x)
+plot(J)
