@@ -1,43 +1,33 @@
-x =    [1, 1, 1, 1;
-	0, 0, 1, 1;
-	0, 1, 0, 1];
+function xor()
+	lambda = 0.001;
+	x = [0 0; 1 0; 0 1; 1 1];
 
-m = 4;
-y = [0 1 1 0];
+	y = [0 1 1 0]';
 
-lambda = 0;
-alfa = 0.001;
+	a1 = [[1 1 1 1]', x];
 
-theta1 = rand(2, 3);
-theta2 = rand(1, 3);
-D1 = Delta1 = zeros(4, 3);
-D2 = Delta2 = zeros(4, 3);
+	theta1 = zeros(3,2);
+	theta2 = zeros(3, 1);
+	for item = 1:1000
+		z2 = a1 * theta1;
+		a2 = 1./(1+exp(-z2));
+		a2 = [[1 1 1 1]', a2];
 
-J = []
-for epoch = 1:100000
-	[h, a1, a2, a3, z2, z3] = fire(theta1, theta2, x);
-
-	ldelta3 = a3 - y;
-	ldelta2 = theta2'*ldelta3 .* a2 .* (1 - a2);
-	
-	for i = 1:m
-		for j = 1:3 
-			Delta2(i, j)  = Delta2(i, j) + a2(j) * ldelta3(i); 
-			Delta1(i, j)  = Delta1(i, j) + a1(j) * ldelta2(i);
-			D2(i,j) = (1/m)*Delta2(i,j);
-			D1(i,j) = (1/m)*Delta1(i,j);	
+		z3 = a2 * theta2;
+		a3 = 1./(1+exp(-z3));
+		ldelta3 = a3 - y;
+		ldelta2 = ldelta3*theta2'.*a2.*(1-a2);
 			
-			theta2(j) = theta2(j) - alfa * D2(i,j);
-			theta1(1, j) = theta1(1, j) - alfa * D2(i,j);
-			theta1(2, j) = theta1(1, j) - alfa *  D2(i,j);
-			
-		end
-	end	
-
+		Delta2 = a2' * ldelta3;
+		Delta1 = ldelta2 * a1(2:3,:)';
 		
-	j = (-1/m) * sum( y * log(a3')  + (1-y) * log(1 - a3')) +(lambda/(2*m))* (sum(sum(theta1.^2)) + sum(sum(theta2.^2)));
-	J = [J, j];
+		w2 = (1/4) * Delta2 + lambda; 
+		w1 = (1/4) * Delta1;
+	end
+	
+	a3
+	
 end
 
-h = fire(theta1, theta2, x)
-plot(J)
+	
+xor()
