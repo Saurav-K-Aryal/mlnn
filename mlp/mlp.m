@@ -1,5 +1,5 @@
 clear; close all; clc;
-nn = create_NN(3, 6, 1);
+nn = create_NN(2, 6, 1);
 t = create_training(nn, 0.00000000001, 1, 10000, 0.08);
 pat = xor_pattern(nn.ni -1);
 
@@ -16,7 +16,7 @@ out = [out, out > 0.5, pat(:, end)];
 out = [out, out(:,end-1) == out(:,end)];
 
 out
-J(1,end);
+e = J(1,end)
 iteration
 figure();
 plot(J);

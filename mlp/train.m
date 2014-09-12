@@ -6,9 +6,9 @@ function [nn, J, iteration] = train(nn, t, pat)
 		iteration = iteration + 1;
 		e = 0;
 		for item = 1:size(pat,1)
-			input =  pat(item, 1:end-1);
+			input =  pat(item, 1:end-nn.no);
 			[ao, ai, ah] = feed_forward(nn, input);
-			target = pat(item, end);
+			target = pat(item, end-nn.no+1:end);
 			[nn, t] = back_propagation(nn, t, target, ao, ai, ah);
 			e = cost_function(target, ao); 
 		end	
