@@ -1,7 +1,7 @@
 clear; close all; clc;
 nn = create_NN(2, 2, 1);
 t = create_training(nn, 0.00000000001, 1, 1000);
-pat = xor_pattern(nn.ni);
+pat = xor_pattern(nn.ni -1);
 
 [nn, J] = train(nn, t, pat);
 
