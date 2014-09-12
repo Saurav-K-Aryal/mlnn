@@ -1,4 +1,4 @@
-function [nn, J] = train(nn, t, pat)
+function [nn, J, iteration] = train(nn, t, pat)
 
 	iteration = 0;
 	J = [];
@@ -13,7 +13,7 @@ function [nn, J] = train(nn, t, pat)
 			e = cost_function(target, ao); 
 		end	
 		J = [J e];
-		if iteration == t.iterations
+		if iteration == t.iterations || (t.err != -1 && e <= t.err)
 			break;
 		end
 	end
