@@ -1,3 +1,4 @@
+clear; close all; clc;
 nn = create_NN(2, 2, 1);
 t = create_training(nn, 0.00000000001, 1, 1000);
 pat = xor_pattern(nn.ni);
@@ -9,7 +10,5 @@ for item = 1:size(pat,1)
 		ao
 end
 
-e
-iteration
 figure();
 plot(J);

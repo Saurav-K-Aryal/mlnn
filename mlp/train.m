@@ -20,3 +20,26 @@ function [nn, J] = train(nn, t, pat)
 		
 
 end
+%!shared mlp, J, iteration
+%!	mlp = create_NN(2, 2, 1);
+%!	training_data = create_training(mlp, 0.00000000001, 1, 10000, 0.08);
+%!	pat = xor_pattern(mlp.ni - 1);
+%!	[mlp, J, iteration] = train(mlp, training_data, pat);
+%!test
+%!	output = feed_forward(mlp, [0 0]) > 0.5;
+%!	assert(! output);
+%!test
+%!	assert(feed_forward(mlp, [0 1]) > 0.5);
+%!test
+%!	assert(feed_forward(mlp, [1 0]) > 0.5);
+%!test
+%!	assert(!(feed_forward(mlp, [1 1]) > 0.5));
+%!
+%!
+%!
+%!
+%!
+%!
+%!
+%!
+%!
