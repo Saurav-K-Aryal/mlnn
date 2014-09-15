@@ -2,6 +2,7 @@ function [nn, J, iteration] = train(nn, t, pat)
 
 	iteration = 0;
 	J = [];
+	m = size(pat, 1);
 	while 1
 		iteration = iteration + 1;
 		e = 0;
@@ -10,8 +11,9 @@ function [nn, J, iteration] = train(nn, t, pat)
 			[ao, ai, ah] = feed_forward(nn, input);
 			target = pat(item, end-nn.no+1:end);
 			[nn, t] = back_propagation(nn, t, target, ao, ai, ah);
-			e = cost_function(nn, target, ao); 
+			e = e + cost_function(nn, target, ao); 
 		end	
+		temp = e/m + t.M * (sum(sum(nn.wi(2:end, :).^2)) + sum(sum(nn.wo(2:end,:).^2)))/2*m;
 		J = [J e];
 		if iteration == t.iterations || (t.err != -1 && e <= t.err)
 			break;
