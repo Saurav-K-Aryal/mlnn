@@ -10,7 +10,7 @@ function [nn, J, iteration] = train(nn, t, pat)
 			[ao, ai, ah] = feed_forward(nn, input);
 			target = pat(item, end-nn.no+1:end);
 			[nn, t] = back_propagation(nn, t, target, ao, ai, ah);
-			e = cost_function(target, ao); 
+			e = cost_function(nn, target, ao); 
 		end	
 		J = [J e];
 		if iteration == t.iterations || (t.err != -1 && e <= t.err)

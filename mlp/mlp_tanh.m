@@ -1,6 +1,6 @@
 clear; close all; clc;
-nn = create_NN(2, 6, 1, @sigmoid, @sigmoid_derivative, @sigmoid_cost_function);
-t = create_training(nn, 0.00000000001, 1, 1000, -1);
+nn = create_NN(2, 6, 1, @tanh, @tanh_derivative, @tanh_cost_function);
+t = create_training(nn, 0.8, 0.9, 10000, -1);
 pat = xor_pattern(nn.ni -1);
 
 [nn, J, iteration] = train(nn, t, pat);

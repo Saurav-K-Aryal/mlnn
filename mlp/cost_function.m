@@ -1,7 +1,6 @@
-function J = cost_function(target, output)
+function J = cost_function(nn, target, output)
 	J = 0;
-	for i = size(output, 2)
-		%J =  (-target) * log((output + 1)/2) - (1-target)*log(1 -(output + 1)/2);
-		J = J+ (-target(1,i)) * log(output(1,i)) - (1 - target(1,i))* log(1-output(1,i));
+	for index = 1:size(output, 2)
+		J = J + nn.cost_function(index, target, output); 
 	end
 end
