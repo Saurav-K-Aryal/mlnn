@@ -1,6 +1,4 @@
 function [nn, tnew] = back_propagation(nn, training, target, ao, ai, ah)
-	training.N = 0.00000000001;
-	training.M=1;
 
 	output_delta = 0;
 	ERROR = target - ao;
