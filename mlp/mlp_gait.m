@@ -1,14 +1,14 @@
-clear; close all; clc;
-nn = create_NN(2, 4, 1, 2, @sigmoid, @sigmoid_derivative, @sigmoid_cost_function);
-t = create_training(nn, 0.8, 1, 0, -1, 60);
+clear; clc;
+nn = create_NN(3, 20, 1, 2, @sigmoid, @sigmoid_derivative, @sigmoid_cost_function);
+t = create_training(nn, 0.001, 0.9, 0, -1, 12 * 3600 );
 
-load angles.mat
+load dynamics_walk3.mat 
 
-data = [angles(3).angle_left, angles(3).av_left, normalize(angles(3).angle_right)];
+data = [dynamics_walk3(:,1), dynamics_walk3(:, 3), dynamics_walk3(:,8), normalize(dynamics_walk3(:, 4))];
 %data = normalize(data);
 
 selected = randperm(size(data, 1));
-selected = selected(:,1:400);
+selected = selected(:, 1:350);
 pat = data(selected, :);
 
 
