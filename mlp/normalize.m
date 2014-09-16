@@ -5,9 +5,7 @@ function n = normalize(e)
 end
 
 
-%!shared siso_cmac
-%!	siso_cmac = create_siso_cmac(-10, 10, 1, 1, 1, 1);
 %!test
-%!	assert(normalize(siso_cmac, [10, 9, 8 , 0]) <= 1);
+%!	assert(normalize([pi, pi/2, 0]) <= 1);
 %!test
-%!	assert(normalize(siso_cmac, [-10, -9, -8 , 0]) >= -1);
+%!	assert(normalize([pi, pi/2, 0]) >= 0);

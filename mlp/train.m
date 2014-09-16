@@ -31,8 +31,8 @@ function [nn, J, iteration] = train(nn, t, pat)
 
 end
 %!shared mlp, J, iteration
-%!	mlp = create_NN(2, 2, 1);
-%!	training_data = create_training(mlp, 0.00000000001, 1, 10000, 0.08);
+%!	mlp = create_NN(2, 2, 1, @sigmoid, @sigmoid_derivative, @sigmoid_cost_function);
+%!	training_data = create_training(mlp, 0.00000000001, 1, 10000, 0.08, -1, -1);
 %!	pat = xor_pattern(mlp.ni - 1);
 %!	[mlp, J, iteration] = train(mlp, training_data, pat);
 %!test
