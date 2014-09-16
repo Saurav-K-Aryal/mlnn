@@ -3,6 +3,7 @@ function [nn, J, iteration] = train(nn, t, pat)
 	iteration = 0;
 	J = [];
 	m = size(pat, 1);
+	init = time();
 	while 1
 		iteration = iteration + 1;
 		e = 0;
@@ -15,8 +16,15 @@ function [nn, J, iteration] = train(nn, t, pat)
 		end	
 		temp = e/m + t.M * (sum(sum(nn.wi(2:end, :).^2)) + sum(sum(nn.wo(2:end,:).^2)))/2*m;
 		J = [J e];
-		if iteration == t.iterations || (t.err != -1 && e <= t.err)
-			break;
+		
+		if t.time_to_stop == -1
+			if iteration == t.iterations || (t.err != -1 && e <= t.err)
+				break;
+			end
+		else
+			if (time() - init) > t.time_to_stop
+				break;
+			end
 		end
 	end
 		

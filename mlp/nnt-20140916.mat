@@ -1,0 +1,132 @@
+# Created by Octave 3.8.1, Tue Sep 16 09:47:20 2014 BRT <roberto@rosenblatt.lis>
+# name: nn
+# type: scalar struct
+# ndims: 2
+ 1 1
+# length: 8
+# name: ni
+# type: scalar
+3
+
+
+# name: nh
+# type: scalar
+13
+
+
+# name: no
+# type: scalar
+1
+
+
+# name: wi
+# type: matrix
+# rows: 3
+# columns: 12
+ -0.01789924533654104 0.03023457285904068 -0.1512200503666469 -0.04805348839652128 -0.0971750180478039 0.1078515066127001 -0.06675307535626347 -0.02683816531952889 -0.08905647577970167 0.325679515377105 0.1723212799777306 0.08741086930662254
+ -0.2208061160873975 0.05977832043006902 -0.2166013086239131 0.2321965974539774 0.1790172300572072 0.08519664996730203 -0.02984594029014202 0.0828490388834902 -0.0604753153355983 0.2375213247263551 0.05900252077017199 0.2880933443152381
+ -0.1125307782206074 0.09373150519834345 0.1027600392827157 -0.04477276447523108 -0.08920995053077865 -0.1422055443007849 0.03529146658756706 -0.143459981300421 0.06695505761289247 -0.09645323458454483 0.04164197632925225 0.180465041704692
+
+
+# name: wo
+# type: matrix
+# rows: 13
+# columns: 1
+ -0.3027280661978207
+ -1.100983935484126
+ -0.4646867997415197
+ -0.2173922348996699
+ 1.492700087026923
+ 0.3541635341355776
+ 0.8145351198641432
+ -1.358249543236883
+ -0.6407249253894528
+ 0.4954700123523765
+ 1.920566764416972
+ 0.2324284844953887
+ 1.996794937757148
+
+
+# name: activation
+# type: function handle
+# octaveroot: /usr/local/Cellar/octave/3.8.1
+# path: /Users/roberto/Documents/mlnn/mlp/sigmoid.m
+sigmoid
+
+
+# name: derivative
+# type: function handle
+# octaveroot: /usr/local/Cellar/octave/3.8.1
+# path: /Users/roberto/Documents/mlnn/mlp/sigmoid_derivative.m
+sigmoid_derivative
+
+
+# name: cost_function
+# type: function handle
+# octaveroot: /usr/local/Cellar/octave/3.8.1
+# path: /Users/roberto/Documents/mlnn/mlp/sigmoid_cost_function.m
+sigmoid_cost_function
+
+
+
+
+# name: t
+# type: scalar struct
+# ndims: 2
+ 1 1
+# length: 7
+# name: N
+# type: scalar
+1e-05
+
+
+# name: M
+# type: scalar
+0.0001
+
+
+# name: iterations
+# type: scalar
+0
+
+
+# name: ci
+# type: matrix
+# rows: 3
+# columns: 12
+ 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0
+
+
+# name: co
+# type: matrix
+# rows: 13
+# columns: 1
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+
+
+# name: err
+# type: scalar
+-1
+
+
+# name: time_to_stop
+# type: scalar
+32400
+
+
+
+
