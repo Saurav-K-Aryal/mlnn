@@ -9,9 +9,9 @@ function [nn, J, iteration] = train(nn, t, pat)
 		e = 0;
 		for item = 1:size(pat,1)
 			input =  pat(item, 1:end-nn.no);
-			[ao, ai, ah] = feed_forward(nn, input);
+			[ao, ai, ah, deeph] = feed_forward(nn, input);
 			target = pat(item, end-nn.no+1:end);
-			[nn, t] = back_propagation(nn, t, target, ao, ai, ah);
+			[nn, t] = back_propagation(nn, t, target, ao, ai, ah, deeph);
 			e = e + cost_function(nn, target, ao); 
 		end	
 		temp = e/m + t.M * (sum(sum(nn.wi(2:end, :).^2)) + sum(sum(nn.wo(2:end,:).^2)))/2*m;
