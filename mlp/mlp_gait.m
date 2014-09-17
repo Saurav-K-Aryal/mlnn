@@ -1,6 +1,6 @@
 clear; clc;
 nn = create_NN(8, 40, 1, 2, @tanh, @tanh_derivative, @tanh_cost_function);
-t = create_training(nn, 0.000001, 0.15, 0, -1, 30 );
+t = create_training(nn, 0.0001, 0.1, 0, -1, 5 * 3600 );
 
 load dynamics_walk3.mat 
 
@@ -19,7 +19,7 @@ out = [];
 desired = [];
 for item = 1:size(data,1)
 	if not(any(item == selected))
-		ao = feed_forward(nn, data(item, 1:end-1));
+		ao = feed_forward(nn, data(item, 1:end-nn.no));
 		out = [out; ao];
 		desired = [desired; data(item, end)];
 	end

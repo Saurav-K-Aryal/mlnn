@@ -22,7 +22,9 @@ function [nn, J, iteration] = train(nn, t, pat)
 				break;
 			end
 		else
-			if (time() - init) > t.time_to_stop
+			running_time = time() - init;
+			%fprintf('Running time: %f', running_time);
+			if (running_time) > t.time_to_stop
 				break;
 			end
 		end
@@ -44,12 +46,3 @@ end
 %!	assert(feed_forward(mlp, [1 0]) > 0.5);
 %!test
 %!	assert(!(feed_forward(mlp, [1 1]) > 0.5));
-%!
-%!
-%!
-%!
-%!
-%!
-%!
-%!
-%!
