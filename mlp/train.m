@@ -1,5 +1,4 @@
-function [nn, J, iteration] = train(nn, t, pat)
-
+function [nn, J, iteration, t] = train(nn, t, pat)
 	iteration = 0;
 	J = [];
 	m = size(pat, 1);
@@ -29,8 +28,6 @@ function [nn, J, iteration] = train(nn, t, pat)
 			end
 		end
 	end
-		
-
 end
 %!shared mlp, J, iteration
 %!	mlp = create_NN(2, 2, 1, @sigmoid, @sigmoid_derivative, @sigmoid_cost_function);
