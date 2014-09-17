@@ -1,6 +1,6 @@
-function n = normalize(e)
+function n = normalize(e, min, max)
 
-	n = (e .- (-0)) ./ (pi .- (-0));
+	n = (e .- (min)) ./ (max .- (min));
 
 end
 
